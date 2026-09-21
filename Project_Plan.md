@@ -1,4 +1,5 @@
-# IS355 Project Plan by Colin Muller, Collin Morris, Kairi Thomas and Mohammad Abukhdeir 
+# IS355 Project Plan 
+## By Colin Muller, Collin Morris, Kairi Thomas and Mohammad Abukhdeir 
 
 ## Group and GitHub Repository
 
