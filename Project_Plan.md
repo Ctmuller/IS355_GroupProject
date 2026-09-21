@@ -1,4 +1,4 @@
-# IS355 Project Plan
+# IS355 Project Plan by Colin Muller, Collin Morris, 
 
 ## Group and GitHub Repository
 
