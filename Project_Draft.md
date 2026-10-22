@@ -53,6 +53,23 @@ The private range `10.10.0.0/16` is used, giving room for future VLANs. The thir
 
 `/24` subnets are deliberately larger than current needs so each area can grow. Servers, printers, network devices and the NVR use static addresses at the bottom of each range; client devices receive addresses from DHCP.
 
+---
+
+### Appended Note: Potential Addressing Model (v2 Proposal)
+
+> **Note:** Updated to use student ID prefix `54.x.x.x` with `/24` subnets, matching the network architecture diagram in Section 7.
+
+| VLAN | Name | Subnet | Gateway | Usable Hosts | Purpose & Key Hardware |
+|:---|:---|:---|:---|:---|:---|
+| **10** | Management | `54.10.10.0/24` | `54.10.10.1` | 254 | Switch, firewall, and AP admin interfaces |
+| **20** | Office Wired | `54.10.20.0/24` | `54.10.20.1` | 254 | 30–40 Office PCs, VoIP, 3D Prototype Printers, Plotters |
+| **30** | Factory OT | `54.10.30.0/24` | `54.10.30.1` | 254 | 20–25 Workers' machinery, PLCs, HMIs, assembly lines |
+| **40** | Cameras | `54.10.40.0/24` | `54.10.40.1` | 254 | ~30 IP surveillance cameras streaming locally |
+| **50** | Local Servers | `54.10.50.0/24` | `54.10.50.1` | 254 | On-site CAD designs, financial IP storage, local NVR, AD/DNS |
+| **60** | Staff Wi-Fi | `54.10.60.0/24` | `54.10.60.1` | 254 | Office laptops and factory floor mobile monitoring devices |
+| **70** | Guest Wi-Fi | `54.10.70.0/24` | `54.10.70.1` | 254 | Visitors and personal phones (isolated to internet) |
+
+
 ## 5. Traffic Rules Between VLANs (draft)
 
 | From → To | Allowed? | Reason |
