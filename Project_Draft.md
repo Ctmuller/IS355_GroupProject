@@ -104,6 +104,16 @@ flowchart TB
     SRV --- SRVD[AD, DNS, DHCP, File]
 ```
 
+---
+
+
+### Detailed Network Topology & Addressing (Student ID Prefix: 54)
+
+The editable diagrams.net source file is available at [`network-architecture.drawio`](diagrams/network-architecture.drawio).
+
+![Network Architecture Diagram](diagrams/network-architecture.png)
+
+
 ## 8. Open Questions for the Group
 
 - Do the device counts in the scenario fit the assumptions above?
