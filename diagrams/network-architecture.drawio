@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="V_GfXfQQKVTyCBumsC68">
+    <mxGraphModel dx="1241" dy="751" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=15;fontStyle=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;rounded=0;" value="Small Manufacturing Company — Network Architecture (Student ID Prefix: 54.x.x.x)" vertex="1">
+          <mxGeometry height="35" width="800" x="175" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="inet" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontStyle=1;" value="Internet" vertex="1">
+          <mxGeometry height="55" width="100" x="525" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="isp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=1;fontStyle=1;" value="ISP Router&lt;br&gt;&lt;i&gt;Fibre Link&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="120" x="515" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="l_inet_isp" edge="1" parent="1" source="inet" style="edgeStyle=straight;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;" target="isp" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fw" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontStyle=1;" value="Next-Gen Firewall (NGFW)&lt;br&gt;&lt;b&gt;Gateway: 54.10.0.1&lt;/b&gt;&lt;br&gt;NAT / VPN / IPS" vertex="1">
+          <mxGeometry height="60" width="180" x="485" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="l_isp_fw" edge="1" parent="1" source="isp" style="edgeStyle=straight;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;" target="fw" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cloud" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=1;fontStyle=1;" value="Cloud Infrastructure&lt;br&gt;(USA Region)&lt;br&gt;• Linux Web Server&lt;br&gt;• Encrypted Backups" vertex="1">
+          <mxGeometry height="85" width="160" x="220" y="212.5" as="geometry" />
+        </mxCell>
+        <mxCell id="l_fw_cloud" edge="1" parent="1" source="fw" style="edgeStyle=straight;html=1;strokeColor=#000000;strokeWidth=1.5;dashed=1;endArrow=none;labelBackgroundColor=#ffffff;" target="cloud" value="Site-to-Site VPN">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="core" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#000000;strokeWidth=2;fontStyle=1;" value="Core Layer 3 Switch&lt;br&gt;Inter-VLAN Routing&lt;br&gt;Management: 54.10.10.2" vertex="1">
+          <mxGeometry height="50" width="180" x="485" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="l_fw_core" edge="1" parent="1" source="fw" style="edgeStyle=straight;html=1;strokeColor=#000000;strokeWidth=2;endArrow=none;" target="core" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sw_off" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="&lt;b&gt;Office Switch&lt;/b&gt;&lt;br&gt;VLAN 20&lt;br&gt;54.10.20.0/24" vertex="1">
+          <mxGeometry height="50" width="160" x="40" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="sw_fac" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="&lt;b&gt;Industrial Switch&lt;/b&gt;&lt;br&gt;VLAN 30 (Factory OT)&lt;br&gt;54.10.30.0/24" vertex="1">
+          <mxGeometry height="50" width="160" x="260" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="sw_cam" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="&lt;b&gt;Surveillance PoE SW&lt;/b&gt;&lt;br&gt;VLAN 40 (Security)&lt;br&gt;54.10.40.0/24" vertex="1">
+          <mxGeometry height="50" width="160" x="495" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="sw_srv" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="&lt;b&gt;Local Server Switch&lt;/b&gt;&lt;br&gt;VLAN 50 (Storage/Core)&lt;br&gt;54.10.50.0/24" vertex="1">
+          <mxGeometry height="50" width="160" x="725" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="sw_ap" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="&lt;b&gt;Wireless PoE SW&lt;/b&gt;&lt;br&gt;VLAN 60 &amp; 70&lt;br&gt;54.10.60.0 &amp; 70.0" vertex="1">
+          <mxGeometry height="50" width="160" x="950" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="l_c_off" edge="1" parent="1" source="core" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;exitX=0.1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="sw_off" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_c_fac" edge="1" parent="1" source="core" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="sw_fac" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_c_cam" edge="1" parent="1" source="core" style="edgeStyle=straight;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="sw_cam" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_c_srv" edge="1" parent="1" source="core" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="sw_srv" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_c_ap" edge="1" parent="1" source="core" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="sw_ap" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dev_off" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=11;align=left;" value="&lt;b&gt;Office Endpoints (30-40 Staff):&lt;/b&gt;&lt;br&gt;• Wired Desktop PCs&lt;br&gt;• VoIP Phones (PoE)&lt;br&gt;• Standard Office Printers&lt;br&gt;• &lt;b&gt;Large Design Plotters&lt;/b&gt;&lt;br&gt;• &lt;b&gt;3D Prototype Printers&lt;/b&gt;" vertex="1">
+          <mxGeometry height="110" width="170" x="35" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="dev_fac" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=11;align=left;" value="&lt;b&gt;Factory Floor (20-25 Staff):&lt;/b&gt;&lt;br&gt;• PLCs &amp; Conveyors (LAN)&lt;br&gt;• HMI Control Consoles&lt;br&gt;• Machinery Monitoring PCs" vertex="1">
+          <mxGeometry height="110" width="170" x="255" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="dev_cam" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=11;align=left;" value="&lt;b&gt;Surveillance Devices:&lt;/b&gt;&lt;br&gt;• ~30 IP Security Cameras&lt;br&gt;• Local Office Monitoring&lt;br&gt;• Motion Sensor Feeds" vertex="1">
+          <mxGeometry height="110" width="170" x="490" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="dev_srv" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=11;align=left;" value="&lt;b&gt;On-Site Servers (Office):&lt;/b&gt;&lt;br&gt;• &lt;b&gt;Confidential CAD Designs&lt;/b&gt;&lt;br&gt;• &lt;b&gt;Company Financial IP&lt;/b&gt;&lt;br&gt;• Local NVR Storage&lt;br&gt;• AD, DNS, DHCP Core" vertex="1">
+          <mxGeometry height="110" width="170" x="720" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="dev_ap" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=11;align=left;" value="&lt;b&gt;Wireless Access Points:&lt;/b&gt;&lt;br&gt;• &lt;b&gt;VLAN 60 (Staff Wi-Fi):&lt;/b&gt;&lt;br&gt;  Laptops, Factory Handhelds&lt;br&gt;• &lt;b&gt;VLAN 70 (Guest Wi-Fi):&lt;/b&gt;&lt;br&gt;  Visitors &amp; Mobile Devices&lt;br&gt;  (Direct Internet Only)" vertex="1">
+          <mxGeometry height="110" width="170" x="945" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="l_dev_off" edge="1" parent="1" source="sw_off" style="edgeStyle=straight;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;" target="dev_off" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_dev_fac" edge="1" parent="1" source="sw_fac" style="edgeStyle=straight;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;" target="dev_fac" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_dev_cam" edge="1" parent="1" source="sw_cam" style="edgeStyle=straight;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;" target="dev_cam" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_dev_srv" edge="1" parent="1" source="sw_srv" style="edgeStyle=straight;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;" target="dev_srv" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_dev_ap" edge="1" parent="1" source="sw_ap" style="edgeStyle=straight;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=none;" target="dev_ap" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
