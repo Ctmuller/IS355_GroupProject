@@ -12,15 +12,7 @@ Network design, cloud services analysis, and cybersecurity risk assessment for a
 - Security Risk Assessment and Controls (in progress)
 - Project Reflection (in progress)
 
-## Network Diagrams
-
-### Network Overview
-
-![Network Diagram](diagrams/network-diagram.png)
-
-Editable source: [network-diagram.drawio](diagrams/network-diagram.drawio)
-
-### Detailed Topology and Addressing
+## Network Diagram
 
 ![Network Architecture](diagrams/network-architecture.png)
 
