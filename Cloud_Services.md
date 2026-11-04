@@ -61,7 +61,7 @@ The same or equivalent specifications were selected for both providers so the co
 ### 1.3 Evidence of Cloud Pricing Calculators
 
 - AWS estimate export: [AWS_Estimate.csv](diagrams/AWS_Estimate.csv)
-- AWS estimate summary screenshot:
+- AWS estimate summary screenshot: [AWS_Estimate_SC](diagrams/AWS_Estimate.png)
 
 ![AWS Pricing Calculator](https://calculator.aws/#/estimate)
 
