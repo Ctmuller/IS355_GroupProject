@@ -8,7 +8,7 @@ Network design, cloud services analysis, and cybersecurity risk assessment for a
 
 - [Project Plan](Project_Plan.md)
 - [Network Design (Draft)](Project_Draft.md)
-- Cloud Services (in progress)
+- [Cloud Services (in progress](Cloud_Servces.md)
 - Security Risk Assessment and Controls (in progress)
 - Project Reflection (in progress)
 
