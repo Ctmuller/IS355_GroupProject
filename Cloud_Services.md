@@ -62,10 +62,7 @@ The same or equivalent specifications were selected for both providers so the co
 
 - AWS estimate export: [AWS_Estimate.csv](diagrams/AWS_Estimate.csv)
 - AWS estimate summary screenshot: [AWS_Estimate_SC](diagrams/AWS_Estimate.png)
-
-! AWS public estimate link: [View AWS estimate](https://calculator.aws/#/estimate?id=1881fd93680bab847ba45aead7e49db160b8f34d)
-
-- AWS public estimate link: (https://calculator.aws/#/estimate?id=1881fd93680bab847ba45aead7e49db160b8f34d)
+- AWS public estimate link: [View AWS estimate](https://calculator.aws/#/estimate?id=1881fd93680bab847ba45aead7e49db160b8f34d)
 - Azure estimate export: TBD
 - Azure public estimate link: TBD
 
