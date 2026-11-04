@@ -63,7 +63,7 @@ The same or equivalent specifications were selected for both providers so the co
 - AWS estimate export: [AWS_Estimate.csv](diagrams/AWS_Estimate.csv)
 - AWS estimate summary screenshot:
 
-![AWS Pricing Calculator Summary](AWS_Summary.png)
+![AWS Pricing Calculator](https://calculator.aws/#/estimate)
 
 - AWS public estimate link: PASTE AWS SHARE LINK HERE
 - Azure estimate export: TBD
