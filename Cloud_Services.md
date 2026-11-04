@@ -43,11 +43,11 @@ The same or equivalent specifications were selected for both providers so the co
 
 | Server | AWS Monthly | AWS Annual | Azure Monthly | Azure Annual |
 |---|---|---|---|---|
-| Web Server | $44.49 | $533.86 | TBD | TBD |
-| Backup Server | $123.43 | $1,481.14 | TBD | TBD |
-| **Total** | **$167.92** | **$2,015.04** | **TBD** | **TBD** |
+| Web Server | $44.49 | $533.86 | $40.58 | $486.90 |
+| Backup Server | $123.43 | $1,481.14 | $108.19 | $1,298.30 |
+| **Total** | **$167.92** | **$2,015.04** | **$148.77** | **$1,785.20** |
 
-*AWS figures are taken from the AWS Pricing Calculator export. The total annual figure is reported by the calculator based on the rounded monthly total.*
+*AWS figures are taken from the AWS Pricing Calculator export. Azure figures are taken from the Azure Pricing Calculator export (`Azure_Estimate.xlsx`). The total annual figure is reported by the calculator based on the rounded monthly total.*
 
 #### AWS Cost Breakdown
 
@@ -56,6 +56,13 @@ The same or equivalent specifications were selected for both providers so the co
 | Web Server | $30.37 (t3.medium at $0.0416/hr) | $5.12 (64 GB gp3) | $9.00 (100 GB) | $44.49 |
 | Backup Server | $30.37 (t3.medium at $0.0416/hr) | $92.16 (2,048 GB st1) | $0.90 (10 GB) | $123.43 |
 
+#### Azure Cost Breakdown
+
+| Server | Compute | Storage | Data Transfer | Monthly Total |
+|---|---|---|---|---|
+| Web Server | $30.37 (B2ls v2 at $0.0416/hr) | $10.21 (64 GiB P6 Premium SSD) | $0.00 (100 GB free tier) | $40.58 |
+| Backup Server | $30.37 (B2ls v2 at $0.0416/hr) | $77.82 (2,048 GiB S40 Standard HDD) | $0.00 (10 GB free tier) | $108.19 |
+
 **Note on pricing model:** On-Demand pricing was used for a fair comparison. The calculator shows that a 1-year Compute Savings Plan would reduce the t3.medium compute cost from $30.37 to $15.04 per month per server, so the company could lower costs by committing to a longer term.
 
 ### 1.3 Evidence of Cloud Pricing Calculators
@@ -63,7 +70,8 @@ The same or equivalent specifications were selected for both providers so the co
 - AWS estimate export: [AWS_Estimate.csv](diagrams/AWS_Estimate.csv)
 - AWS estimate summary screenshot: [AWS_Estimate_SC](diagrams/AWS_Estimate.png)
 - AWS public estimate link: [View AWS estimate](https://calculator.aws/#/estimate?id=1881fd93680bab847ba45aead7e49db160b8f34d)
-- Azure estimate export: TBD
+- Azure estimate export: [Azure_Estimate.xlsx](diagrams/Azure_Estimate.xlsx)
+- Azure estimate summary screenshot: [Azure_Estimate.png](diagrams/Azure_Estimate.png)
 - Azure public estimate link: TBD
 
 ### 1.4 Recommended Provider
