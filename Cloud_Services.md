@@ -2,7 +2,7 @@
 
 **IS355 Networking and Cyber Security — Colin Muller, Collin Morris, Kairi Thomas, Mohammad Abukhdeir**
 
-> **Status: IN PROGRESS.** AWS pricing is complete. Azure pricing, the provider recommendation, and the backup strategy comparison are still to be completed.
+> **Status: NEARLY COMPLETE.** AWS and Azure pricing, the provider recommendation, and the backup strategy comparison are complete. Still needed: the Azure public estimate link (Section 1.3) and each member's backup approach (Section 3).
 
 ## 1. Pricing for Cloud Services
 
