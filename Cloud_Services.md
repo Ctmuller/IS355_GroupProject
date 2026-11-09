@@ -136,7 +136,7 @@ The company's important files (technical designs, high-resolution product images
 
 ### Kairi Thomas
 
-**Tools/services:** [ ]
+**Tools/services:** [Google Drive, OneDrive, Github ]
 
 **How it works:** [ ]
 
