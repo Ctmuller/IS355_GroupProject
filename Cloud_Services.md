@@ -76,18 +76,82 @@ The same or equivalent specifications were selected for both providers so the co
 
 ### 1.4 Recommended Provider
 
-TBD — to be completed after Azure pricing.
+**Recommendation: Microsoft Azure.**
+
+With equivalent specifications, Azure costs **$1,785.20 per year** compared with **$2,015.04 per year** for AWS, a saving of **$229.84 per year (about 11%)**. Compute cost is identical on both providers ($30.37 per server per month), so the difference comes from two areas:
+
+1. **Backup storage.** Azure's 2 TiB Standard HDD costs $77.82 per month versus $92.16 for AWS st1, a difference of $14.34 per month. Because the backup server is the larger of the two costs and its storage will grow as the company keeps more backup versions, this is the gap most likely to widen over time.
+2. **Outbound data transfer.** Azure includes the first 100 GB of outbound transfer each month at no charge, while AWS charges $0.09/GB. This saves about $9.90 per month at the estimated traffic level.
+
+AWS is slightly cheaper for the web server's SSD ($5.12 vs. $10.21), but this does not offset Azure's savings on storage and bandwidth. Both providers offer US-based regions, Linux support, encryption at rest, and similar long-term commitment discounts, so neither has a technical advantage that outweighs the cost difference for this company's needs. Azure is therefore the better value.
+
+**Considerations:** If the website's traffic grows well beyond 100 GB/month, Azure's free bandwidth advantage shrinks, so the company should review its usage after the first year. The company could also reduce costs on either provider by storing backups in object storage (Amazon S3 or Azure Blob Storage, using a cool or archive tier) instead of a disk attached to a running server, since backup data is written often but read rarely.
 
 ## 2. Backup Strategy Comparison
 
-TBD — compare local backup only, encrypted cloud backup, and unencrypted cloud backup.
+The company's important files (technical designs, high-resolution product images, and technical specifications) could be protected in three ways:
+
+1. **Local backup only** — copies kept on drives or a server at the company's own site.
+2. **Encrypted cloud backup** — files encrypted on-site, then sent to a cloud server (the approach in Section 1).
+3. **Unencrypted cloud backup** — files sent to a cloud server without being encrypted first.
+
+| Factor | Local Backup Only | Encrypted Cloud Backup | Unencrypted Cloud Backup |
+|---|---|---|---|
+| Fire, flood, or other site disaster | Not protected — backups are lost along with the originals | Protected — copies are stored off-site | Protected — copies are stored off-site |
+| Theft of on-site equipment | Not protected, and stolen backup drives expose the data | Protected — data is safe off-site and unreadable to others | Protected from loss, but data remains readable if the cloud account is breached |
+| Ransomware | High risk if backup drives are connected to the infected network | Lower risk, especially with versioning and immutable backups | Lower risk of loss, but no protection for confidentiality |
+| Breach of the cloud provider or account | Not applicable | Data stays confidential because only the company holds the key | Designs and specifications are exposed to the attacker |
+| Confidentiality of intellectual property | Depends on physical security of the site | Strongest — the provider never sees readable data | Weakest — relies entirely on the provider's security |
+| Restore speed | Fastest — data is on the local network | Slower — limited by internet speed, plus decryption | Slower — limited by internet speed |
+| Cost | Up-front hardware cost, no monthly fees | Monthly fees (about $1,300–$1,480/year for the backup server) plus key management | Same monthly fees as encrypted cloud backup |
+| Main risk | A single event can destroy both originals and backups | Losing the encryption key makes backups unrecoverable | Data exposure if the account or provider is compromised |
+
+**Local backup only** is fast and inexpensive to run, but it fails the most important purpose of a backup: surviving an event that affects the main site. A fire, flood, theft, or ransomware attack can destroy the original files and the backups at the same time.
+
+**Unencrypted cloud backup** solves the off-site problem, but the company's technical designs and specifications are valuable intellectual property. Storing them in readable form means a stolen cloud password, a misconfigured storage permission, or a breach at the provider would expose them to competitors or attackers.
+
+**Encrypted cloud backup** keeps copies off-site and keeps them confidential, because files are encrypted before they leave the company and only the company holds the key. Its main weakness is key management: if the key is lost, the backups cannot be restored, so the key must be stored securely in more than one place (for example, a password manager and an offline copy kept in a safe).
+
+**Conclusion:** Encrypted cloud backup is the strongest of the three options for this company. Ideally, it should be combined with a local backup to follow the **3-2-1 rule**: three copies of the data, on two different types of media, with one copy off-site. The local copy provides fast restores for everyday mistakes, while the encrypted cloud copy protects against disasters, theft, and breaches.
 
 ## 3. Group Members' University Work Backup Approaches
 
-TBD — each group member to describe the specific tools or services they use (or intend to use) to back up university work, and how their approach would help if their primary computer were stolen.
+*Each member should replace the placeholder text with their own approach: the specific tools or services used, how often backups happen, and how they would recover their work if their primary computer were stolen.*
+
+### Colin Muller
+
+**Tools/services:** [e.g., OneDrive through Loyola's Microsoft 365, GitHub for code and project files, external drive]
+
+**How it works:** [what is backed up, and how often — automatic sync or manual]
+
+**If my computer were stolen:** [how I would sign in from another device and recover my files; whether the device is encrypted and password-protected so the thief cannot read my files]
+
+### Collin Morris
+
+**Tools/services:** [ ]
+
+**How it works:** [ ]
+
+**If my computer were stolen:** [ ]
+
+### Kairi Thomas
+
+**Tools/services:** [ ]
+
+**How it works:** [ ]
+
+**If my computer were stolen:** [ ]
+
+### Mohammad Abukhdeir
+
+**Tools/services:** [ ]
+
+**How it works:** [ ]
+
+**If my computer were stolen:** [ ]
 
 ## References
 
 - Amazon Web Services. *AWS Pricing Calculator*. https://calculator.aws
 - Microsoft. *Azure Pricing Calculator*. https://azure.microsoft.com/pricing/calculator
-- Anthropic. *Claude* (AI assistant), used to help select comparable specifications and structure this section.
+- Anthropic. *Claude* (AI assistant), used to help select comparable specifications, structure this section, and draft the provider recommendation and backup strategy comparison.
