@@ -120,11 +120,11 @@ The company's important files (technical designs, high-resolution product images
 
 ### Colin Muller
 
-**Tools/services:** [e.g., OneDrive through Loyola's Microsoft 365, GitHub for code and project files, external drive]
+**Tools/services:** GitHub (private repositories), Microsoft OneDrive through Loyola's Microsoft 365 account, and built-in device encryption (BitLocker on Windows / FileVault on macOS).
 
-**How it works:** [what is backed up, and how often — automatic sync or manual]
+**How it works:** Coursework that involves code, documentation, or group projects, such as this IS355 project and my weekly tutorial journal, is kept in private GitHub repositories. Every commit and push creates a versioned copy off my computer, so I can restore any earlier version of a file. Other university files, such as Word documents, Excel models, and presentations, are saved in a OneDrive folder that syncs automatically whenever I'm online. OneDrive also keeps version history and a recycle bin, which protects against accidental deletion or overwriting. Together this follows the 3-2-1 idea: the copy on my laptop, plus two separate cloud services in different locations.
 
-**If my computer were stolen:** [how I would sign in from another device and recover my files; whether the device is encrypted and password-protected so the thief cannot read my files]
+**If my computer were stolen:** I would lose the hardware, not my work. I could sign in to GitHub and OneDrive from any other computer, clone my repositories, and continue working with at most the changes since my last sync or push. Both accounts are protected with strong passwords and multi-factor authentication, so the thief could not get into them, and I would sign out of all sessions and change my passwords right away. Because the laptop's drive is encrypted and requires a password to unlock, the thief could not read the files stored on it.
 
 ### Collin Morris
 
