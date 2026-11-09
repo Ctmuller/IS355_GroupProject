@@ -138,7 +138,8 @@ The company's important files (technical designs, high-resolution product images
 
 **Tools/services:** [Google Drive, OneDrive, Github ]
 
-**How it works:** [Google Drive is what I use for my google docs, slides, and photos that are related to assignments. One]
+**How it works:** [Google Drive is what I use for my google docs, slides, and photos that are related to assignments. 
+One]
 
 **If my computer were stolen:** [ ]
 
