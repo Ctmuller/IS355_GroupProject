@@ -60,8 +60,8 @@ The same or equivalent specifications were selected for both providers so the co
 
 | Server | Compute | Storage | Data Transfer | Monthly Total |
 |---|---|---|---|---|
-| Web Server | $30.37 (B2ls v2 at $0.0416/hr) | $10.21 (64 GiB P6 Premium SSD) | $0.00 (100 GB free tier) | $40.58 |
-| Backup Server | $30.37 (B2ls v2 at $0.0416/hr) | $77.82 (2,048 GiB S40 Standard HDD) | $0.00 (10 GB free tier) | $108.19 |
+| Web Server| $30.37 (B2ls v2 at $0.0416/hr)| $10.21 (64 GiB P6 Premium SSD) | $0.00 (100 GB free tier) | $40.58 |
+| Backup Server| $30.37 (B2ls v2 at $0.0416/hr)| $77.82 (2,048 GiB S40 Standard HDD) | $0.00 (10 GB free tier) | $108.19 |
 
 **Note on pricing model:** On-Demand pricing was used for a fair comparison. The calculator shows that a 1-year Compute Savings Plan would reduce the t3.medium compute cost from $30.37 to $15.04 per month per server, so the company could lower costs by committing to a longer term.
 
