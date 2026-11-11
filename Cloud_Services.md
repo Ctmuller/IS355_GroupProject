@@ -136,11 +136,15 @@ The company's important files (technical designs, high-resolution product images
 
 ### Kairi Thomas
 
-**Tools/services:** [Google Drive, OneDrive, Github]
+**Tools/services:** [Google Drive, OneDrive, GitHub]
 
-**How it works:** [Google Drive is what I use for my google docs, slides, and photos that are related to assignments. 
+**How it works:** 
 
-OneDrive is the what I use for other assignments like Microsoft word, Microsoft Excel, and Microsoft presentation. This program is very useful for me because I work on a windows pc so I can easily access any of the Microsoft files I just describe]
+Google Drive is what I use for my google docs, slides, and photos that are related to assignments. 
+
+OneDrive is the what I use for other assignments like Microsoft word, Microsoft Excel, and Microsoft presentation. This program is very useful for me because I work on a windows pc so I can easily access any of the Microsoft files I just describe
+
+GitHub is a platform that is cloud based, this platform allows for the making of projects 
 
 **If my computer were stolen:** [ ]
 
