@@ -140,11 +140,11 @@ The company's important files (technical designs, high-resolution product images
 
 **How it works:** 
 
-Google Drive is what I use for my google docs, slides, and photos that are related to assignments. 
+**Google Drive**: is what I use for my google docs, slides, and photos that are related to assignments. 
 
-OneDrive is the what I use for other assignments like Microsoft word, Microsoft Excel, and Microsoft presentation. This program is very useful for me because I work on a windows pc so I can easily access any of the Microsoft files I just describe
+**OneDrive**: is the what I use for other assignments like Microsoft word, Microsoft Excel, and Microsoft presentation. This program is very useful for me because I work on a windows pc so I can easily access any of the Microsoft files I just describe
 
-GitHub is a platform that is cloud based, this platform allows for the making of projects 
+**GitHub**: is a platform that is cloud based, this platform allows for the making of repositories. These repositories are used to store project files. The neat part about GitHub is the collaboration that the platform allows, this means that I can work on a file with other students. GitHub is also great for saving data, I can restore previous versions of the file if I am not comfortable with the current form of the file.  
 
 **If my computer were stolen:** [ ]
 
