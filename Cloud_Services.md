@@ -2,7 +2,7 @@
 
 **IS355 Networking and Cyber Security — Colin Muller, Collin Morris, Kairi Thomas, Mohammad Abukhdeir**
 
-> **Status: NEARLY COMPLETE.** AWS and Azure pricing, the provider recommendation, and the backup strategy comparison are complete. Still needed: the Azure public estimate link (Section 1.3) and each member's backup approach (Section 3).
+> **Status: NEARLY COMPLETE.** AWS and Azure pricing, the provider recommendation, and the backup strategy comparison are complete. Still needed: ( the Azure public estimate link (linked to excel and picture) (Section 1.3) and each member's backup approach (Section 3).
 
 ## 1. Pricing for Cloud Services
 
@@ -72,7 +72,7 @@ The same or equivalent specifications were selected for both providers so the co
 - AWS public estimate link: [View AWS estimate](https://calculator.aws/#/estimate?id=1881fd93680bab847ba45aead7e49db160b8f34d)
 - Azure estimate export: [Azure_Estimate.xlsx](diagrams/Azure_Estimate.xlsx)
 - Azure estimate summary screenshot: [Azure_Estimate.png](diagrams/Azure_Estimate.png)
-- Azure public estimate link: TBD
+- Azure public estimate link: Not generated (Full breakdown provided in `Azure_Estimate.xlsx` and `Azure_Estimate.png`)
 
 ### 1.4 Recommended Provider
 
