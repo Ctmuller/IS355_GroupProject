@@ -128,11 +128,11 @@ The company's important files (technical designs, high-resolution product images
 
 ### Collin Morris
 
-**Tools/services:** [ ]
+**Tools/services:** GitHub (private repositories), Google Drive, and a local USB flash drive (plus Windows BitLocker drive encryption).
 
-**How it works:** [ ]
+**How it works:** All the lab work done by me including my coding labs, network diagrams, and other documents of the group projects are stored in private GitHub repositories for version control in order to make sure that everything is being saved properly. Classnotes, assignments, and PowerPoint slides are uploaded to Google Drive and they automatically get uploaded to the cloud if I’m connected to the Internet. Major assignments are also stored on my USB at home.
 
-**If my computer were stolen:** [ ]
+**If my computer were stolen:** I would only lose the physical laptop and nothing to do with my coursework. I would still be able to login to my GitHub account and Google Drive account from another computer and continue working there since both accounts are protected using strong passwords and two-factor authentication, also I would immediately logout of other logged-in sessions and change my passwords. Since the hard drive on the laptop is encrypted, anyone who got the laptop will not be able to access the files stored on it.
 
 ### Kairi Thomas
 
