@@ -140,7 +140,7 @@ The company's important files (technical designs, high-resolution product images
 
 **How it works:** 
 
-**Google Drive**: is what I use for my google docs, slides, and photos that are related to assignments. 
+**Google Drive**: is what I use for my google docs, slides, and photos that are related to assignments. I can access all of files for those assignments on each of the apps connected to Google Drive.
 
 **OneDrive**: is the what I use for other assignments like Microsoft word, Microsoft Excel, and Microsoft presentation. This program is very useful for me because I work on a windows pc so I can easily access any of the Microsoft files I just describe
 
