@@ -146,7 +146,7 @@ The company's important files (technical designs, high-resolution product images
 
 **GitHub**: is a platform that is cloud based, this platform allows for the making of repositories. These repositories are used to store project files. The neat part about GitHub is the collaboration that the platform allows, this means that I can work on a file with other students. GitHub is also great for saving data, I can restore previous versions of the file if I am not comfortable with the current form of the file.  
 
-**If my computer were stolen:** [ ]
+**If my computer were stolen:** If my computer was stolen I would only lose the physical hardware. My data across Google Drive, OneDrive, and GitHub would be saved online. This means that I could get a new device and access any data I have on those platforms. I could also activate multi step authentication to protect any of the data and log off of the sessions active on that computer. With this I would also change the passwords for further protection of the data. 
 
 ### Mohammad Abukhdeir
 
