@@ -1,6 +1,6 @@
 # Security Risk Assessment and Controls
 
-> **Status: DRAFT (in progress).** Likelihood and impact scores are the group's working estimates and should be reviewed by all members. The full risk register will also be entered into the course risk assessment spreadsheet template and linked here.
+**IS355 Networking and Cyber Security — Colin Muller, Collin Morris, Kairi Thomas, Mohammad Abukhdeir**
 
 ---
 
@@ -91,18 +91,18 @@ We followed a simple qualitative approach based on NIST SP 800-30:
 
 ## 5. Security Controls
 
-Controls were chosen to reduce the Critical and High risks first. Each one maps to the NIST CSF 2.0 and the CIS Critical Security Controls v8.
+Controls were chosen to reduce the Critical and High risks first. Each one maps to the NIST CSF 2.0, the CIS Critical Security Controls v8, and, where applicable, the ACSC Essential Eight.
 
-| ID | Control | Risks Addressed | NIST CSF 2.0 | CIS Controls v8 |
-|---|---|---|---|---|
-| C1 | Multi-factor authentication (MFA) for VPN, email, cloud, and all admin accounts | R1, R2, R7 | PR.AA-03 | 6.3, 6.4, 6.5 |
-| C2 | Immutable, encrypted off-site backups with monthly restore testing | R1, R5 | PR.DS-11 | 11.2, 11.3, 11.4, 11.5 |
-| C3 | Deny-by-default segmentation with a factory jump host for all access to VLAN 30 | R3, R7, R10 | PR.IR-01 | 12.2, 13.4 |
-| C4 | Patch and vulnerability management for servers, PCs, network devices, cameras, and the website | R4, R8, R9 | PR.PS-02, ID.RA-01 | 7.1–7.4 |
-| C5 | Centralized logging (SIEM) with firewall IPS alerts | R2, R3, R5, R8 | DE.CM-01, DE.AE-03 | 8.2, 8.9, 13.1, 13.3 |
-| C6 | Security awareness training with regular phishing simulations | R1, R2 | PR.AT-01 | 14.1, 14.2 |
-| C7 | Least-privilege file permissions and prompt account removal for leavers | R5, R2 | PR.AA-05 | 5.3, 6.1, 6.2, 6.8 |
-| C8 | Endpoint detection and response (EDR) on all PCs and servers | R1, R3 | DE.CM-09 | 10.1, 10.7 |
+| ID | Control | Risks Addressed | NIST CSF 2.0 | CIS Controls v8 | Essential Eight |
+|---|---|---|---|---|---|
+| C1 | Multi-factor authentication (MFA) for VPN, email, cloud, and all admin accounts | R1, R2, R7 | PR.AA-03 | 6.3, 6.4, 6.5 | Multi-factor authentication |
+| C2 | Immutable, encrypted off-site backups with monthly restore testing | R1, R5 | PR.DS-11 | 11.2, 11.3, 11.4, 11.5 | Regular backups |
+| C3 | Deny-by-default segmentation with a factory jump host for all access to VLAN 30 | R3, R7, R10 | PR.IR-01 | 12.2, 13.4 | — |
+| C4 | Patch and vulnerability management for servers, PCs, network devices, cameras, and the website | R4, R8, R9 | PR.PS-02, ID.RA-01 | 7.1–7.4 | Patch applications; patch operating systems |
+| C5 | Centralized logging (SIEM) with firewall IPS alerts | R2, R3, R5, R8 | DE.CM-01, DE.AE-03 | 8.2, 8.9, 13.1, 13.3 | — |
+| C6 | Security awareness training with regular phishing simulations | R1, R2 | PR.AT-01 | 14.1, 14.2 | — |
+| C7 | Least-privilege file permissions and prompt account removal for leavers | R5, R2 | PR.AA-05 | 5.3, 6.1, 6.2, 6.8 | Restrict administrative privileges |
+| C8 | Endpoint detection and response (EDR) on all PCs and servers | R1, R3 | DE.CM-09 | 10.1, 10.7 | — |
 
 ### Control Justifications
 
@@ -110,11 +110,11 @@ Controls were chosen to reduce the Critical and High risks first. Each one maps 
 
 **C2 — Immutable off-site backups.** Modern ransomware looks for backups and destroys them before encrypting files. Immutable backups cannot be changed or deleted for a set period, even by an administrator account, so the company can always restore. Monthly restore tests confirm the backups actually work.
 
-**C3 — Segmentation and factory jump host.** Our design already separates the network into seven VLANs with the firewall as the gateway. This control adds a **deny-by-default** rule set and requires all access to factory systems, including contractor access, to go through a single monitored jump host. This follows the zones-and-conduits approach in IEC 62443 for industrial systems.
+**C3 — Segmentation and factory jump host.** Our design already separates the network into seven VLANs, with inter-VLAN routing on the Layer 3 core switch. This control enforces **deny-by-default** ACLs on the core switch and requires all administrative and engineering access to factory systems, including contractor access, to go through a single monitored jump host. This follows the zones-and-conduits approach in IEC 62443 for industrial systems.
 
 **C4 — Patch and vulnerability management.** In Tutorial 8, our research on recent Cisco and Chrome CVEs showed how quickly network devices and browsers become vulnerable. A monthly patch cycle, with critical fixes applied faster, reduces the window for attackers. Cameras and the website CMS are included because they are often forgotten.
 
-**C5 — Centralized logging and monitoring.** The firewall sees all traffic between VLANs, but alerts are only useful if someone reviews them. A SIEM collects logs from the firewall, Active Directory, servers, and EDR, and correlates them to detect patterns like a login from an unusual location followed by a large file download.
+**C5 — Centralized logging and monitoring.** The firewall sees all internet and VPN traffic, and the core switch ACLs log blocked traffic between VLANs, but alerts are only useful if someone reviews them. A SIEM collects logs from the firewall, core switch, Active Directory, servers, and EDR, and correlates them to detect patterns like a login from an unusual location followed by a large file download.
 
 **C6 — Security awareness training.** Technical controls cannot stop every phishing email. Yearly training with regular phishing simulations helps employees recognize and report suspicious messages.
 
@@ -139,25 +139,16 @@ R6 is mainly an availability risk. The UPS in our design covers short power outa
 
 ## 6. Changes to the Network Design
 
-Several controls change the network architecture. These updates should be made to the network design and diagram.
+Several controls change the network architecture. These changes are included in the [Network Design](Project_Draft.md) addressing, traffic rules, equipment list, and diagram.
 
 | Change | Control | Location | Details |
 |---|---|---|---|
-| Add a log server / SIEM | C5 | VLAN 50 — 10.10.50.40 | Receives logs from the firewall, AD, servers, and EDR |
-| Add a factory jump host | C3, C7 | VLAN 10 — 10.10.10.50 | The only device allowed to connect to PLCs and HMIs; contractors reach it through the VPN with MFA |
-| Change firewall policy to deny-by-default | C3 | Firewall | Only traffic listed in the traffic rules table is allowed between VLANs |
+| Add a log server / SIEM | C5 | VLAN 50 — `54.10.50.40` | Receives logs from the firewall, AD, servers, and EDR |
+| Add a factory jump host | C3, C7 | VLAN 10 — `54.10.10.50` | The only device allowed administrative or engineering access to PLCs and HMIs; contractors reach it through the VPN with MFA |
+| Change inter-VLAN ACLs to deny-by-default | C3 | Core Layer 3 switch | Only traffic listed in the traffic rules table is allowed between VLANs |
 | Enable immutable storage on the cloud backup server | C2 | Cloud backup server | Backups cannot be changed or deleted for 30 days |
 | Add a web application firewall (WAF) | C4 | In front of the cloud web server | Blocks common web attacks while the CMS is being patched |
 | Require MFA on the site-to-site and remote-access VPN | C1 | Firewall | Applies to staff, administrators, and contractors |
-
----
-
-## 7. Open Items
-
-- [ ] Enter the risk register into the course risk assessment spreadsheet template and link it here.
-- [ ] Group review of likelihood and impact scores.
-- [ ] Update the network diagram with the log server and jump host.
-- [ ] Add the WAF and immutable backup costs once the cloud provider is chosen.
 
 ---
 
