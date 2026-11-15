@@ -116,7 +116,6 @@ The company's important files (technical designs, high-resolution product images
 
 ## 3. Group Members' University Work Backup Approaches
 
-*Each member should replace the placeholder text with their own approach: the specific tools or services used, how often backups happen, and how they would recover their work if their primary computer were stolen.*
 
 ### Colin Muller
 
