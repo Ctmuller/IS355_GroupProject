@@ -1,26 +1,26 @@
 
-# Draft Network Design (v0.2)
+# Network Design
 
 **IS355 Networking and Cyber Security — Colin Muller, Collin Morris, Kairi Thomas, Mohammad Abukhdeir**
 
-> **Status: DRAFT.** This document presents the proposed network design for the manufacturing company described in the Project Specification. Device counts, equipment models, and certain technical configurations are preliminary and will be confirmed before final submission.
+This section presents the proposed network design for the manufacturing company described in the Project Specification. Where the specification does not give exact figures, device counts and equipment models are based on the assumptions below.
 
 ## 1. Assumptions
 
 The following assumptions were made where the Project Specification does not provide exact technical requirements.
 
-| # | Assumption | Status / To Confirm |
+| # | Assumption | Basis |
 |---|------------|---------------------|
-| A1 | The company operates from one location with two attached buildings: a factory and an office building. | Confirmed in Project Specification |
-| A2 | The office building has approximately 30–40 staff members using a combination of desktop computers, laptops, VoIP phones, and shared printers. | Staff count confirmed; exact device quantities to be determined |
-| A3 | The factory has approximately 20–25 workers and network-connected machinery, including PLCs, HMIs, and monitoring computers. | Worker count confirmed; equipment types and quantities to be determined |
-| A4 | Approximately 30 IP security cameras will be installed throughout the factory and office buildings, recording to a local Network Video Recorder (NVR). | Camera quantity and storage requirements to be confirmed |
-| A5 | Employees require wireless connectivity in both buildings. A separate guest wireless network will provide visitors and personal devices with internet-only access. | Wireless coverage and access point quantities to be confirmed |
-| A6 | The public website and encrypted backup server will be hosted with a cloud provider, while confidential company files remain primarily on local servers. | Cloud provider and server specifications to be determined |
-| A7 | Local servers will provide file storage, directory services, DNS, and DHCP. | Specific server configurations and operating systems to be determined |
-| A8 | The company will initially use one business-grade fiber internet connection, with the option to add a secondary connection for redundancy. | Internet bandwidth, provider, and budget to be confirmed |
-| A9 | The network will use managed switches that support VLANs, access control lists, and high-speed uplinks. | Final switch specifications to be determined |
-| A10 | The IP addressing scheme will use the student ID prefix `54` and `/24` subnet masks to satisfy the Project Specification. | Confirm that 54 is the last two digits of a group member's student ID |
+| A1 | The company operates from one location with two attached buildings: a factory and an office building. | Project Specification |
+| A2 | The office building has approximately 30–40 staff members using a combination of desktop computers, laptops, VoIP phones, and shared printers. | Staff count from the Project Specification; device mix assumed |
+| A3 | The factory has approximately 20–25 workers and network-connected machinery, including PLCs, HMIs, and monitoring computers. | Worker count from the Project Specification; equipment types assumed |
+| A4 | Approximately 30 IP security cameras will be installed throughout the factory and office buildings, recording to a local Network Video Recorder (NVR). | Assumed from building size; final count depends on a site survey |
+| A5 | Employees require wireless connectivity in both buildings. A separate guest wireless network will provide visitors and personal devices with internet-only access. | Assumed; AP quantities depend on a site survey |
+| A6 | The public website and encrypted backup server will be hosted with a cloud provider, while confidential company files remain primarily on local servers. | Project Specification; provider and specifications chosen in [Cloud Services](Cloud_Services.md) |
+| A7 | Local servers will provide file storage, directory services, DNS, and DHCP. | Assumed standard services for a small Windows domain |
+| A8 | The company will initially use one business-grade fiber internet connection, with the option to add a secondary connection for redundancy. | Assumed; redundancy discussed in Section 6.1 |
+| A9 | The network will use managed switches that support VLANs, access control lists, and high-speed uplinks. | Assumed; models listed in Section 6 |
+| A10 | The IP addressing scheme will use the student ID prefix `54` and `/24` subnet masks to satisfy the Project Specification. | Project Specification addressing rule (54 = last two digits of a group member's student ID) |
 
 ## 2. Requirements
 
@@ -97,9 +97,9 @@ The core switch will:
 - Provide high-speed connections to the access switches.
 - Support additional VLANs and devices as the company expands.
 
-The default gateway for each internal VLAN will be configured on the Layer 3 core switch.
+The default gateway for each internal VLAN (the `.1` address) will be configured as a switched virtual interface (SVI) on the Layer 3 core switch.
 
-The core switch will use a default route toward the next-generation firewall for traffic destined for external networks.
+The core switch will use a default route toward the next-generation firewall (`54.10.0.1`) over the transit link for traffic destined for external networks.
 
 **Security consideration:** Because the core switch performs inter-VLAN routing, ACLs on the core switch will enforce internal network segmentation. The firewall will primarily enforce internet and cloud connectivity security policies. Sensitive inter-VLAN traffic may be routed through a firewall in a future design if deeper inspection is required.
 
@@ -155,11 +155,12 @@ The third octet corresponds to the VLAN number to simplify network identificatio
 
 | VLAN | Name | Subnet | Default Gateway | Usable Hosts | Purpose and Key Hardware |
 |------|------|--------|-----------------|--------------|--------------------------|
-| 10 | Management | `54.10.10.0/24` | `54.10.10.1` | 254 | Management interfaces for switches, firewall, and wireless access points |
+| — | Transit (firewall–core link) | `54.10.0.0/24` | — | 254 | Firewall inside interface `54.10.0.1`; core switch uplink `54.10.0.2` |
+| 10 | Management | `54.10.10.0/24` | `54.10.10.1` | 254 | Management interfaces for switches, firewall, and wireless access points; factory jump host (`54.10.10.50`) |
 | 20 | Office Wired | `54.10.20.0/24` | `54.10.20.1` | 254 | Office PCs, VoIP phones, general-purpose printers, plotters, and 3D prototype printers |
 | 30 | Factory OT | `54.10.30.0/24` | `54.10.30.1` | 254 | Factory machinery, PLCs, HMIs, and production monitoring computers |
 | 40 | Cameras | `54.10.40.0/24` | `54.10.40.1` | 254 | Approximately 30 IP surveillance cameras |
-| 50 | Local Servers | `54.10.50.0/24` | `54.10.50.1` | 254 | Engineering design storage, financial records, NVR, AD, DNS, DHCP, and file servers |
+| 50 | Local Servers | `54.10.50.0/24` | `54.10.50.1` | 254 | Engineering design storage, financial records, NVR, AD, DNS, DHCP, file servers, and log server / SIEM (`54.10.50.40`) |
 | 60 | Staff Wi-Fi | `54.10.60.0/24` | `54.10.60.1` | 254 | Employee laptops, approved wireless devices, and factory monitoring devices |
 | 70 | Guest Wi-Fi | `54.10.70.0/24` | `54.10.70.1` | 254 | Visitors and personal devices requiring internet-only access |
 
@@ -213,7 +214,9 @@ The network will follow a **default-deny approach for inter-VLAN traffic**, allo
 | Factory VLAN 30 | Server VLAN 50 | Limited | Access to required production data, authentication, and monitoring services |
 | Office VLAN 20 | Factory VLAN 30 | Denied by default | Prevents ordinary office devices from accessing production equipment |
 | Staff Wi-Fi VLAN 60 | Server VLAN 50 | Limited | Allows authorized employees to access necessary internal resources |
-| Staff Wi-Fi VLAN 60 | Factory VLAN 30 | Limited | Allows approved monitoring devices to communicate with specific factory systems |
+| Staff Wi-Fi VLAN 60 | Factory VLAN 30 | Limited (read-only monitoring) | Allows approved monitoring devices to read data from specific factory systems |
+| Factory jump host (VLAN 10) | Factory VLAN 30 | Allowed | The only path for administrative and engineering changes to PLCs and HMIs, including contractor access (see [Risk Assessment](Risk_Assessment.md) control C3) |
+| All devices | Log server (VLAN 50) | Limited | Allows the firewall, switches, servers, and endpoints to send logs to the SIEM |
 | Camera VLAN 40 | NVR in VLAN 50 | Limited / Allowed | Permits security cameras to transmit video to the approved local recording server |
 | Camera VLAN 40 | Other internal VLANs | Denied | Reduces opportunities for compromised cameras to access company systems |
 | Guest Wi-Fi VLAN 70 | Internal VLANs 10–60 | Denied | Prevents visitors from accessing internal resources |
@@ -277,6 +280,8 @@ Final selections will depend on the number of devices, required performance, env
 | Server Access Switch | Managed Gigabit Ethernet switch | Adequate ports, VLAN support, and high-speed uplinks appropriate for file storage and recording traffic | Connects local servers and the NVR to the core network |
 | Network Video Recorder | Enterprise NVR or dedicated recording server | Support for approximately 30 cameras, continuous recording, appropriate storage capacity, and configurable retention | Stores surveillance video locally without requiring constant cloud transmission |
 | Local Servers | Business-class physical servers or virtualized hosts | Adequate CPU, memory, RAID-protected storage, reliable network interfaces, and backup capabilities | Hosts confidential company data and internal infrastructure services |
+| Log Server / SIEM | Virtual machine on the local server host | Adequate storage for at least 90 days of logs; syslog collection from firewall, switches, AD, servers, and EDR | Centralizes monitoring (control C5) |
+| Factory Jump Host | Hardened Windows workstation or virtual machine | MFA login, session recording, engineering software for PLCs/HMIs only | Single monitored access point to the factory network (control C3) |
 | UPS | Business-grade uninterruptible power supply | Sufficient capacity to support critical network devices during short power interruptions | Helps reduce network interruptions and allows controlled shutdowns |
 
 ### 6.1 Equipment Selection Considerations
@@ -295,9 +300,9 @@ Final selections will depend on the number of devices, required performance, env
 
 ## 7. Network Diagram
 
-The editable diagram is in [`network-diagram.drawio`](../diagrams/network-diagram.drawio) (open it at [app.diagrams.net](https://app.diagrams.net)). An exported image is below.
+The detailed network diagram shows the addressing scheme (student ID prefix 54) and network equipment. The editable diagrams.net source is [`network-architecture.drawio`](diagrams/network-architecture.drawio).
 
-![Draft network diagram](../diagrams/network-diagram.png)
+![Network Architecture Diagram](diagrams/network-architecture.png)
 
 A simplified version that renders directly on GitHub:
 
@@ -320,7 +325,10 @@ flowchart TB
     FAC --- FACD[PLCs, HMIs, Machinery]
     CAM --- CAMD[IP Security Cameras]
     WIFI --- APS["APs: Staff VLAN 60 / Guest VLAN 70"]
-    SRV --- SRVD["AD, DNS, DHCP, File Servers, NVR"]
+    SRV --- SRVD["AD, DNS, DHCP, File Servers, NVR, SIEM"]
+    MGMT --- JH["Factory Jump Host"]
+    JH -. Admin access only .- FACD
+    CLOUD --- WAF[Web Application Firewall]
 
     CAMD -. Restricted Video Traffic .- SRVD
 ```
@@ -344,16 +352,6 @@ The core switch connects the main functional areas of the company:
 The next-generation firewall protects internet connectivity and supports secure connections to cloud-hosted services.
 
 The Layer 3 core switch performs internal routing, with ACLs restricting traffic between VLANs.
-
-### Detailed Network Topology & Addressing (Student ID Prefix: 54)
-
-The editable diagrams.net source file is available at [`network-architecture.drawio`](diagrams/network-architecture.drawio).
-
-![Network Architecture Diagram](diagrams/network-architecture.png)
-
-The detailed architecture diagram provides a more complete representation of the planned addressing scheme and network equipment.
-
-The diagram should remain consistent with the VLAN assignments, IP address ranges, and security policies described in Sections 4 and 5.
 
 ## 8. Design Decisions and Justifications
 
@@ -415,23 +413,4 @@ The selected architecture also supports the installation of additional access sw
 
 Security is incorporated through VLAN segmentation, ACLs, guest network isolation, restricted management access, and perimeter firewall protection.
 
-These design decisions provide a foundation for the formal risk assessment and security controls that will be completed in the later stages of the project.
-
-The risk assessment may identify additional measures requiring updates to the network architecture.
-
-## 9. Open Questions for the Group
-
-The following items should be reviewed before completing the final design.
-
-| # | Question | Why It Matters |
-|---|----------|----------------|
-| Q1 | Does the student ID prefix `54` satisfy the required addressing rule? | Ensures compliance with the Project Specification |
-| Q2 | How many office computers, phones, printers, and other wired devices will actually be connected? | Determines the number and size of required access switches |
-| Q3 | How many PLCs, HMIs, and other industrial devices require network connectivity? | Determines factory switch capacity and connectivity needs |
-| Q4 | How many security cameras will be installed and how long must recordings be retained? | Determines PoE requirements, NVR storage, and network capacity |
-| Q5 | How many wireless access points will be required to cover both buildings? | Determines wireless equipment quantities and placement |
-| Q6 | Should the company invest in a secondary internet connection? | Helps determine availability requirements and cost |
-| Q7 | Which cloud provider will be selected for the public website and encrypted backup server? | Affects connectivity and the separate cloud services analysis |
-| Q8 | Which specific devices require communication between the office, factory, and server VLANs? | Determines detailed ACL rules and permitted services |
-| Q9 | Which vulnerabilities will be identified during the security risk assessment? | Determines additional security controls and possible design changes |
-| Q10 | Does the final hardware budget support redundant network components? | Determines reliability and future expansion options |
+These design decisions provide a foundation for the formal risk assessment. The risk assessment added a log server / SIEM, a factory jump host, and a cloud web application firewall to the design; see [Risk Assessment and Controls](Risk_Assessment.md), Section 6.
